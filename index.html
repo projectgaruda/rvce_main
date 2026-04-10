@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RV College of Engineering</title>
+  <title>RV College of Engineering Parody</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
@@ -66,7 +66,6 @@
     .photo-placeholder svg { width: 48px; height: 48px; fill: #aaa; }
     .photo-placeholder span { font-size: 13px; text-align: center; line-height: 1.5; }
  
-    /* COMING SOON OVERLAY — text only, no timer */
     .cs-overlay {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
       background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
@@ -120,15 +119,11 @@
     .accred-row.row-3 { grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
     .accred-cell {
       padding: 20px 20px 20px 0; border-top: 3px solid var(--orange);
-      border-right: 1px solid var(--border);
-      margin-top: -1px;
+      border-right: 1px solid var(--border); margin-top: -1px;
     }
     .accred-cell:last-child { border-right: none; }
     .accred-cell + .accred-cell { padding-left: 20px; }
-    .accred-org {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--orange); margin-bottom: 6px;
-    }
+    .accred-org { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
     .accred-text p { font-size: 13px; color: var(--mid); line-height: 1.55; }
     .accred-text strong { color: var(--text); font-weight: 600; }
     .nirf-links { margin-top: 6px; display: flex; flex-direction: column; gap: 3px; }
@@ -156,17 +151,23 @@
       padding: 16px 40px; display: flex; justify-content: space-between;
       align-items: center; flex-wrap: wrap; gap: 8px;
     }
+    .parody-bar {
+      background: #000f2e; color: rgba(255,255,255,0.35); font-size: 11px;
+      text-align: center; padding: 8px 40px; letter-spacing: 0.03em;
+    }
+    .parody-bar a { color: rgba(255,255,255,0.5); text-decoration: underline; }
  
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .accred-row.row-4 { grid-template-columns: repeat(2, 1fr); }
       .accred-row.row-3 { grid-template-columns: repeat(2, 1fr); }
-      .quotes-grid { grid-template-columns: 1fr; }
+      .quotes-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 580px) {
       .accred-row.row-4, .accred-row.row-3 { grid-template-columns: 1fr; }
       .accred-cell { border-right: none; padding-left: 0 !important; }
       .accred-section, .quotes-section { padding: 20px 16px; }
+      .quotes-grid { grid-template-columns: 1fr; }
       .hero-image { height: 260px; }
       .cs-overlay { padding: 16px; }
       .left-strip { width: 22px; }
@@ -187,7 +188,7 @@
  
   <div class="main-wrap">
  
-    <!-- HEADER — logo only, no text -->
+    <!-- HEADER -->
     <header class="site-header">
       <div class="logo-area">
         <img src="assets/RVCELogo.png" alt="RVCE"
@@ -204,8 +205,8 @@
         <span>Hero image goes here<br><small>assets/hero.jpg</small></span>
       </div>
       <div class="cs-overlay">
-        <div class="cs-title">Our New Website is Coming Soon</div>
-        <div class="cs-sub">We're rebuilding our digital home. Stay tuned for updates.</div>
+        <div class="cs-title">Gaadi Rok!</div>
+        <div class="cs-sub">class me dhurandar exam me bandar</div>
       </div>
     </div>
  
@@ -295,6 +296,7 @@
         <div class="sh-line"></div>
       </div>
       <div class="quotes-grid">
+ 
         <div class="quote-card">
           <div class="quote-mark">"</div>
           <div class="quote-photo">
@@ -305,6 +307,7 @@
           <div class="quote-author">Dr. Playsstation</div>
           <div class="quote-role">The Legend, RV College of Engineering</div>
         </div>
+ 
         <div class="quote-card">
           <div class="quote-mark">"</div>
           <div class="quote-photo">
@@ -313,8 +316,9 @@
           </div>
           <p class="quote-body">"Those Damn Americans"</p>
           <div class="quote-author">TeaDrinker69</div>
-          <div class="quote-role">absent from RV College of Engineering</div>
+          <div class="quote-role">Absent from RV College of Engineering</div>
         </div>
+ 
         <div class="quote-card">
           <div class="quote-mark">"</div>
           <div class="quote-photo">
@@ -323,24 +327,42 @@
           </div>
           <p class="quote-body">"Bro tried tea with doritos once"</p>
           <div class="quote-author">LogicalCounter420</div>
-          <div class="quote-role">Comes for attendance stays for the classroom girls, RV College of Engineering </div>
+          <div class="quote-role">Comes for attendance, stays for the classroom girls, RV College of Engineering</div>
         </div>
-         <div class="quote-photo">
+ 
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <div class="quote-photo">
             <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
-            Photo here · assets/quote1.jpg
+            Photo here · assets/quote4.jpg
           </div>
           <p class="quote-body">"The future is made up of the past...Bro gonna stay single forever"</p>
-          <div class="quote-author">Dr.GymBoy67</div>
-          <div class="quote-role">bro wears id card of RV College of Engineering</div>
+          <div class="quote-author">Dr. GymBoy67</div>
+          <div class="quote-role">Bro wears ID card of RV College of Engineering</div>
         </div>
+ 
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <div class="quote-photo">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            Photo here · assets/quote5.jpg
+          </div>
+          <p class="quote-body">"Currently Attendence Maxxing"</p>
+          <div class="quote-author">StartupGirl46</div>
+          <div class="quote-role">optional to attend RV College of Engineering</div>
+        </div>
+ 
       </div>
     </div>
  
     <!-- FOOTER -->
     <footer class="site-footer">
-      <div>© 2025 RV College of Engineering, beauclair — 5600LXI. No rights reserved.</div>
+      <div>© 2025 RV College of Engineering, Beauclair — 5600LXI. No rights reserved.</div>
       <div>Affiliated to Neha Technological University, Gulbarga</div>
     </footer>
+    <div class="parody-bar">
+      Note:This is a student-made parody page and is not affiliated with or endorsed by RV College of Engineering. The official website is <a href="https://rvce.edu.in">rvce.edu.in</a>
+    </div>
  
   </div>
  
