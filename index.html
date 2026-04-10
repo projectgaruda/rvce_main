@@ -36,25 +36,21 @@
     }
     .home-icon svg { width: 13px; height: 13px; fill: #fff; }
  
-    /* MAIN WRAPPER */
     .main-wrap { margin-left: 28px; }
  
     /* HEADER */
     .site-header {
       background: var(--white); padding: 10px 24px;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center;
       border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
     }
-    .logo-area { display: flex; align-items: center; gap: 10px; }
+    .logo-area { display: flex; align-items: center; }
     .logo-area img { height: 54px; width: auto; }
     .logo-placeholder {
       width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--border);
       background: #f5f5f5; display: none; align-items: center; justify-content: center;
       font-size: 9px; color: var(--light); text-align: center; line-height: 1.3;
     }
-    .rv-name { font-size: 17px; font-weight: 700; color: var(--text); display: block; }
-    .rv-sub  { font-size: 17px; font-weight: 700; color: var(--text); display: block; }
-    .rv-sub sup { font-size: 10px; font-weight: 400; }
  
     /* HERO */
     .hero-image {
@@ -70,29 +66,14 @@
     .photo-placeholder svg { width: 48px; height: 48px; fill: #aaa; }
     .photo-placeholder span { font-size: 13px; text-align: center; line-height: 1.5; }
  
-    /* COMING SOON OVERLAY */
+    /* COMING SOON OVERLAY — text only, no timer */
     .cs-overlay {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
       background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
       padding: 40px 40px 28px;
-      display: flex; align-items: flex-end; justify-content: space-between;
-      flex-wrap: wrap; gap: 20px;
     }
     .cs-title { font-size: clamp(20px, 3vw, 34px); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 6px; }
     .cs-sub { font-size: 13px; color: rgba(255,255,255,0.72); }
- 
-    /* COUNTDOWN */
-    .countdown { display: flex; gap: 8px; align-items: flex-end; }
-    .cd-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
-    .unit { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-    .unit-value {
-      font-size: clamp(26px, 3.8vw, 44px); font-weight: 700; color: #fff;
-      background: rgba(0,0,0,0.35); border-top: 3px solid var(--orange);
-      min-width: clamp(50px, 7vw, 70px); text-align: center;
-      padding: 6px 6px 4px; line-height: 1;
-    }
-    .unit-name { font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
-    .sep { font-size: clamp(22px, 3.2vw, 38px); font-weight: 700; color: var(--orange); padding-bottom: 14px; }
  
     /* NOTIFICATIONS */
     .notif-bar { background: var(--teal); display: flex; align-items: stretch; height: 44px; overflow: hidden; }
@@ -121,6 +102,17 @@
       clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);
     }
  
+    /* KNOW MORE BUTTON */
+    .know-more-wrap { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .know-more-btn {
+      background: var(--orange); color: #fff; border: none; cursor: pointer;
+      font-family: 'Open Sans', sans-serif; font-size: 13px; font-weight: 700;
+      padding: 10px 24px; letter-spacing: 0.05em;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.15s;
+    }
+    .know-more-btn:hover { background: #c94208; }
+ 
     /* ACCREDITATION */
     .accred-section { background: var(--white); padding: 32px 40px; }
     .accred-row { display: grid; gap: 0; border-top: 1px solid var(--border); }
@@ -128,16 +120,14 @@
     .accred-row.row-3 { grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
     .accred-cell {
       padding: 20px 20px 20px 0; border-top: 3px solid var(--orange);
-      border-right: 1px solid var(--border); display: flex; align-items: flex-start;
-      gap: 14px; margin-top: -1px;
+      border-right: 1px solid var(--border);
+      margin-top: -1px;
     }
     .accred-cell:last-child { border-right: none; }
     .accred-cell + .accred-cell { padding-left: 20px; }
-    .accred-logo { width: 62px; height: 62px; flex-shrink: 0; object-fit: contain; }
-    .accred-logo-ph {
-      width: 62px; height: 62px; flex-shrink: 0; border: 1px dashed #ccc;
-      border-radius: 50%; background: #f9f9f9; display: flex; align-items: center;
-      justify-content: center; font-size: 8px; color: var(--light); text-align: center; line-height: 1.4;
+    .accred-org {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 6px;
     }
     .accred-text p { font-size: 13px; color: var(--mid); line-height: 1.55; }
     .accred-text strong { color: var(--text); font-weight: 600; }
@@ -197,44 +187,25 @@
  
   <div class="main-wrap">
  
-    <!-- HEADER -->
+    <!-- HEADER — logo only, no text -->
     <header class="site-header">
       <div class="logo-area">
         <img src="assets_main/RVCELogo.png" alt="RVCE"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
         <div class="logo-placeholder">Logo<br>here</div>
-        <div>
-          <span class="rv-name">RV College of</span>
-          <span class="rv-sub">Engineering<sup>®</sup></span>
-        </div>
       </div>
     </header>
  
     <!-- HERO IMAGE -->
     <div class="hero-image">
-      <img src="assets_main/hero.jpg" alt="RVCE Campus"
-        onerror="this.style.display='none'">
+      <img src="assets_main/hero.jpg" alt="RVCE Campus" onerror="this.style.display='none'">
       <div class="photo-placeholder">
         <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
         <span>Hero image goes here<br><small>assets_main/hero.jpg</small></span>
       </div>
       <div class="cs-overlay">
-        <div>
-          <div class="cs-title">Our New Website is Coming Soon</div>
-          <div class="cs-sub">We're rebuilding our digital home. Stay tuned for updates.</div>
-        </div>
-        <div>
-          <div class="cd-label">Launching in</div>
-          <div class="countdown">
-            <div class="unit"><div class="unit-value" id="cd-days">00</div><div class="unit-name">Days</div></div>
-            <div class="sep">:</div>
-            <div class="unit"><div class="unit-value" id="cd-hours">00</div><div class="unit-name">Hours</div></div>
-            <div class="sep">:</div>
-            <div class="unit"><div class="unit-value" id="cd-mins">00</div><div class="unit-name">Mins</div></div>
-            <div class="sep">:</div>
-            <div class="unit"><div class="unit-value" id="cd-secs">00</div><div class="unit-name">Secs</div></div>
-          </div>
-        </div>
+        <div class="cs-title">Our New Website is Coming Soon</div>
+        <div class="cs-sub">We're rebuilding our digital home. Stay tuned for updates.</div>
       </div>
     </div>
  
@@ -260,6 +231,12 @@
  
     <!-- ACCREDITATION -->
     <div class="accred-section">
+      <div class="know-more-wrap">
+        <button class="know-more-btn" onclick="alert('⚠️ The real RVCE website is rvce.edu.in\n\nThis is a student-made parody page and is not affiliated with or endorsed by RV College of Engineering.')">
+          Click here to know more ▶
+        </button>
+      </div>
+ 
       <div class="section-heading">
         <div class="sh-line"></div>
         <div class="sh-title">Accreditation</div>
@@ -269,57 +246,43 @@
       <!-- Row 1 -->
       <div class="accred-row row-4">
         <div class="accred-cell">
-          <img src="assets_main/ugc.png" alt="UGC" class="accred-logo"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="accred-logo-ph">UGC<br>Logo</div>
-          <div class="accred-text"><p><strong>Recognised by the UGC (University Grants Commission)</strong> and holding Autonomous Status, RVCE is committed to maintaining the highest standards in higher education.</p></div>
+          <div class="accred-org">Hogwarts School of Witchcraft and Wizardry</div>
+          <div class="accred-text"><p><strong>Recognised by the Ministry of Magic</strong> for maintaining the highest standards in magical education since 990 AD. Inspected and approved by the Hogwarts Board of Governors.</p></div>
         </div>
         <div class="accred-cell">
-          <img src="assets_main/aicte.png" alt="AICTE" class="accred-logo"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="accred-logo-ph">AICTE<br>Logo</div>
-          <div class="accred-text"><p><strong>Approved by AICTE,</strong> ensuring quality in technical education.</p></div>
+          <div class="accred-org">The Jedi Council — Coruscant</div>
+          <div class="accred-text"><p><strong>Approved by the Galactic Republic,</strong> ensuring quality in technical and Force-based education across all star systems.</p></div>
         </div>
         <div class="accred-cell">
-          <img src="assets_main/nba.png" alt="NBA" class="accred-logo"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="accred-logo-ph">NBA<br>Logo</div>
-          <div class="accred-text"><p>UG and PG programmes are accredited multiple times by the <strong>National Board of Accreditation (NBA).</strong></p></div>
+          <div class="accred-org">Starfleet Academy — Star Trek</div>
+          <div class="accred-text"><p>UG and PG programmes accredited multiple times by the <strong>United Federation of Planets</strong> for excellence in science, engineering and intergalactic diplomacy.</p></div>
         </div>
         <div class="accred-cell">
-          <img src="assets_main/naac.png" alt="NAAC" class="accred-logo"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="accred-logo-ph">NAAC<br>Logo</div>
-          <div class="accred-text"><p>Accredited with an <strong>A+ Grade by NAAC,</strong> reflecting our commitment to excellence.</p></div>
+          <div class="accred-org">Xavier's School for Gifted Youngsters</div>
+          <div class="accred-text"><p>Accredited with an <strong>A+ Grade by the X-Men Accreditation Board,</strong> reflecting our commitment to excellence in mutant education and civil rights.</p></div>
         </div>
       </div>
  
       <!-- Row 2 -->
       <div class="accred-row row-3">
         <div class="accred-cell">
-          <img src="assets_main/vtu.png" alt="VTU" class="accred-logo"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="accred-logo-ph">VTU<br>Logo</div>
-          <div class="accred-text"><p><strong>Affiliated to Visvesvaraya Technological University (VTU),</strong> Belagavi.</p></div>
+          <div class="accred-org">Unseen University — Discworld</div>
+          <div class="accred-text"><p><strong>Affiliated to the Ankh-Morpork Guild of Wizards.</strong> Offering the finest arcane arts education on the Disc since the Mended Drum was a tavern.</p></div>
         </div>
         <div class="accred-cell">
-          <img src="assets_main/nirf.png" alt="NIRF" class="accred-logo"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="accred-logo-ph">NIRF<br>Logo</div>
+          <div class="accred-org">Monsters University — Pixar</div>
           <div class="accred-text">
-            <p><strong>Ranked in the 101–150 band in the NIRF 2025</strong> Engineering Category.</p>
+            <p><strong>Ranked #1 in the Scare Programme</strong> by the Monsters Inc. Institute of Rankings and Fear.</p>
             <div class="nirf-links">
-              <a href="#">NIRF DCS Report 2026 (Engineering, Innovation, SDG)</a>
-              <a href="#">NIRF DCS Report 2025</a>
-              <a href="#">NIRF DCS Report 2024</a>
+              <a href="#">MU Scare Rankings Report 2026</a>
+              <a href="#">MU Fear Index Report 2025</a>
+              <a href="#">MU Roar Report 2024</a>
             </div>
           </div>
         </div>
         <div class="accred-cell">
-          <img src="assets_main/iirf.png" alt="IIRF" class="accred-logo"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="accred-logo-ph">IIRF<br>Logo</div>
-          <div class="accred-text"><p><strong>Ranked 1st at the National, State and Zonal levels</strong> among the Best Private Engineering Colleges in the <strong>IIRF 2025</strong> Rankings.</p></div>
+          <div class="accred-org">Bayside High School — Saved by the Bell</div>
+          <div class="accred-text"><p><strong>Ranked 1st at the National, State and Zonal levels</strong> among the Best Fictional Private Institutions in the <strong>IIRF 2025</strong> Rankings. Principal Belding approved.</p></div>
         </div>
       </div>
     </div>
@@ -338,9 +301,9 @@
             <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
             Photo here · assets_main/quote1.jpg
           </div>
-          <p class="quote-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam."</p>
-          <div class="quote-author">Dr. Firstname Lastname</div>
-          <div class="quote-role">Principal, RV College of Engineering</div>
+          <p class="quote-body">"WhenYouWakeUpAtNightToSleep"</p>
+          <div class="quote-author">Dr. Playsstation</div>
+          <div class="quote-role">The Legend, RV College of Engineering</div>
         </div>
         <div class="quote-card">
           <div class="quote-mark">"</div>
@@ -348,9 +311,9 @@
             <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
             Photo here · assets_main/quote2.jpg
           </div>
-          <p class="quote-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."</p>
-          <div class="quote-author">Prof. Firstname Lastname</div>
-          <div class="quote-role">Head of Department, Computer Science</div>
+          <p class="quote-body">"Those Damn Americans"</p>
+          <div class="quote-author">TeaDrinker69</div>
+          <div class="quote-role">absent from RV College of Engineering</div>
         </div>
         <div class="quote-card">
           <div class="quote-mark">"</div>
@@ -358,41 +321,28 @@
             <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
             Photo here · assets_main/quote3.jpg
           </div>
-          <p class="quote-body">"Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation."</p>
-          <div class="quote-author">Student Name</div>
-          <div class="quote-role">Final Year, Electronics &amp; Communication</div>
+          <p class="quote-body">"Bro tried tea with doritos once"</p>
+          <div class="quote-author">LogicalCounter420</div>
+          <div class="quote-role">Comes for attendance stays for the classroom girls, RV College of Engineering </div>
+        </div>
+         <div class="quote-photo">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            Photo here · assets_main/quote1.jpg
+          </div>
+          <p class="quote-body">"The future is made up of the past...Bro gonna stay single forever"</p>
+          <div class="quote-author">Dr.GymBoy67</div>
+          <div class="quote-role">bro wears id card of RV College of Engineering</div>
         </div>
       </div>
     </div>
  
     <!-- FOOTER -->
     <footer class="site-footer">
-      <div>© 2025 RV College of Engineering, Bengaluru — 560059. All rights reserved.</div>
-      <div>Affiliated to Visvesvaraya Technological University, Belagavi</div>
+      <div>© 2025 RV College of Engineering, beauclair — 5600LXI. No rights reserved.</div>
+      <div>Affiliated to Neha Technological University, Gulbarga</div>
     </footer>
  
   </div>
  
-  <script>
-    const target = new Date('2026-04-16T23:59:59');
-    const els = {
-      days:  document.getElementById('cd-days'),
-      hours: document.getElementById('cd-hours'),
-      mins:  document.getElementById('cd-mins'),
-      secs:  document.getElementById('cd-secs'),
-    };
-    function pad(n){ return String(Math.max(0,n)).padStart(2,'0'); }
-    let timer;
-    function tick(){
-      const diff = Math.max(0, target - new Date());
-      els.days.textContent  = pad(Math.floor(diff/86400000));
-      els.hours.textContent = pad(Math.floor(diff/3600000)%24);
-      els.mins.textContent  = pad(Math.floor(diff/60000)%60);
-      els.secs.textContent  = pad(Math.floor(diff/1000)%60);
-      if(diff<=0) clearInterval(timer);
-    }
-    tick();
-    timer = setInterval(tick, 1000);
-  </script>
 </body>
 </html>
