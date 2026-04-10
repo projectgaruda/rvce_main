@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RV College of Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #E8520A;
+      --blue:   #003087;
+      --teal:   #1a7abf;
+      --gray-bg:#f0f0f0;
+      --text:   #333;
+      --mid:    #555;
+      --light:  #888;
+      --border: #ddd;
+      --white:  #fff;
+    }
+    body { font-family: 'Open Sans', sans-serif; background: var(--gray-bg); color: var(--text); font-size: 14px; }
+ 
+    /* LEFT ORANGE STRIP */
+    .left-strip {
+      position: fixed; left: 0; top: 0; bottom: 0; width: 28px;
+      background: var(--orange); z-index: 200;
+      display: flex; flex-direction: column; align-items: center; padding-top: 10px;
+    }
+    .hamburger { display: flex; flex-direction: column; gap: 4px; cursor: pointer; padding: 6px 4px; }
+    .hamburger span { display: block; width: 18px; height: 2px; background: #fff; border-radius: 1px; }
+    .home-icon {
+      margin-top: auto; margin-bottom: 16px; width: 22px; height: 22px;
+      background: rgba(255,255,255,0.25); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .home-icon svg { width: 13px; height: 13px; fill: #fff; }
+ 
+    /* MAIN WRAPPER */
+    .main-wrap { margin-left: 28px; }
+ 
+    /* HEADER */
+    .site-header {
+      background: var(--white); padding: 10px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
+    }
+    .logo-area { display: flex; align-items: center; gap: 10px; }
+    .logo-area img { height: 54px; width: auto; }
+    .logo-placeholder {
+      width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--border);
+      background: #f5f5f5; display: none; align-items: center; justify-content: center;
+      font-size: 9px; color: var(--light); text-align: center; line-height: 1.3;
+    }
+    .rv-name { font-size: 17px; font-weight: 700; color: var(--text); display: block; }
+    .rv-sub  { font-size: 17px; font-weight: 700; color: var(--text); display: block; }
+    .rv-sub sup { font-size: 10px; font-weight: 400; }
+ 
+    /* HERO */
+    .hero-image {
+      width: 100%; height: 420px; background: #b8b8b8;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-image > img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; }
+    .photo-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: #888; position: relative; z-index: 1;
+    }
+    .photo-placeholder svg { width: 48px; height: 48px; fill: #aaa; }
+    .photo-placeholder span { font-size: 13px; text-align: center; line-height: 1.5; }
+ 
+    /* COMING SOON OVERLAY */
+    .cs-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+      padding: 40px 40px 28px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .cs-title { font-size: clamp(20px, 3vw, 34px); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 6px; }
+    .cs-sub { font-size: 13px; color: rgba(255,255,255,0.72); }
+ 
+    /* COUNTDOWN */
+    .countdown { display: flex; gap: 8px; align-items: flex-end; }
+    .cd-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+    .unit { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+    .unit-value {
+      font-size: clamp(26px, 3.8vw, 44px); font-weight: 700; color: #fff;
+      background: rgba(0,0,0,0.35); border-top: 3px solid var(--orange);
+      min-width: clamp(50px, 7vw, 70px); text-align: center;
+      padding: 6px 6px 4px; line-height: 1;
+    }
+    .unit-name { font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+    .sep { font-size: clamp(22px, 3.2vw, 38px); font-weight: 700; color: var(--orange); padding-bottom: 14px; }
+ 
+    /* NOTIFICATIONS */
+    .notif-bar { background: var(--teal); display: flex; align-items: stretch; height: 44px; overflow: hidden; }
+    .notif-label {
+      background: #155f96; color: #fff; font-size: 13px; font-weight: 700; font-style: italic;
+      padding: 0 18px; display: flex; align-items: center; gap: 8px; white-space: nowrap;
+      flex-shrink: 0; border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    .notif-label svg { width: 16px; height: 16px; fill: #fff; }
+    .notif-ticker { flex: 1; overflow: hidden; display: flex; align-items: center; }
+    .notif-inner {
+      display: flex; gap: 60px; white-space: nowrap;
+      animation: ticker 32s linear infinite;
+      font-size: 13px; color: #fff; padding-left: 20px;
+    }
+    .notif-inner span::before { content: '★ '; color: #FFD700; margin-right: 6px; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+ 
+    /* SECTION HEADING */
+    .section-heading { display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+    .sh-line { flex: 1; height: 1px; background: repeating-linear-gradient(90deg, #ccc 0, #ccc 5px, transparent 5px, transparent 9px); }
+    .sh-title {
+      background: var(--orange); color: #fff; font-size: 15px; font-weight: 700;
+      font-style: italic; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 8px 40px; margin: 0 -1px;
+      clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);
+    }
+ 
+    /* ACCREDITATION */
+    .accred-section { background: var(--white); padding: 32px 40px; }
+    .accred-row { display: grid; gap: 0; border-top: 1px solid var(--border); }
+    .accred-row.row-4 { grid-template-columns: repeat(4, 1fr); }
+    .accred-row.row-3 { grid-template-columns: repeat(3, 1fr); margin-top: 24px; }
+    .accred-cell {
+      padding: 20px 20px 20px 0; border-top: 3px solid var(--orange);
+      border-right: 1px solid var(--border); display: flex; align-items: flex-start;
+      gap: 14px; margin-top: -1px;
+    }
+    .accred-cell:last-child { border-right: none; }
+    .accred-cell + .accred-cell { padding-left: 20px; }
+    .accred-logo { width: 62px; height: 62px; flex-shrink: 0; object-fit: contain; }
+    .accred-logo-ph {
+      width: 62px; height: 62px; flex-shrink: 0; border: 1px dashed #ccc;
+      border-radius: 50%; background: #f9f9f9; display: flex; align-items: center;
+      justify-content: center; font-size: 8px; color: var(--light); text-align: center; line-height: 1.4;
+    }
+    .accred-text p { font-size: 13px; color: var(--mid); line-height: 1.55; }
+    .accred-text strong { color: var(--text); font-weight: 600; }
+    .nirf-links { margin-top: 6px; display: flex; flex-direction: column; gap: 3px; }
+    .nirf-links a { color: var(--orange); text-decoration: none; font-size: 13px; }
+    .nirf-links a:hover { text-decoration: underline; }
+ 
+    /* QUOTES */
+    .quotes-section { background: var(--gray-bg); padding: 32px 40px; }
+    .quotes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .quote-card { background: var(--white); border-top: 3px solid var(--orange); padding: 20px; position: relative; }
+    .quote-mark { font-size: 72px; line-height: 0.5; color: var(--orange); opacity: 0.13; position: absolute; top: 16px; left: 12px; font-family: Georgia, serif; }
+    .quote-photo {
+      width: 100%; height: 160px; background: #e6e6e6; margin-bottom: 14px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 6px; color: #aaa; font-size: 11px; border: 1px dashed #ccc; text-align: center;
+    }
+    .quote-photo svg { width: 28px; height: 28px; fill: #bbb; }
+    .quote-body { font-size: 13px; font-style: italic; color: var(--mid); line-height: 1.7; margin-bottom: 14px; position: relative; z-index: 1; }
+    .quote-author { font-size: 12px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.06em; }
+    .quote-role { font-size: 11px; color: var(--light); margin-top: 2px; }
+ 
+    /* FOOTER */
+    .site-footer {
+      background: var(--blue); color: rgba(255,255,255,0.65); font-size: 12px;
+      padding: 16px 40px; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+ 
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .accred-row.row-4 { grid-template-columns: repeat(2, 1fr); }
+      .accred-row.row-3 { grid-template-columns: repeat(2, 1fr); }
+      .quotes-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 580px) {
+      .accred-row.row-4, .accred-row.row-3 { grid-template-columns: 1fr; }
+      .accred-cell { border-right: none; padding-left: 0 !important; }
+      .accred-section, .quotes-section { padding: 20px 16px; }
+      .hero-image { height: 260px; }
+      .cs-overlay { padding: 16px; }
+      .left-strip { width: 22px; }
+      .main-wrap { margin-left: 22px; }
+      .site-footer { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- LEFT ORANGE STRIP -->
+  <div class="left-strip">
+    <div class="hamburger"><span></span><span></span><span></span></div>
+    <div class="home-icon">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    </div>
+  </div>
+ 
+  <div class="main-wrap">
+ 
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="logo-area">
+        <img src="assets_main/RVCELogo.png" alt="RVCE"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="logo-placeholder">Logo<br>here</div>
+        <div>
+          <span class="rv-name">RV College of</span>
+          <span class="rv-sub">Engineering<sup>®</sup></span>
+        </div>
+      </div>
+    </header>
+ 
+    <!-- HERO IMAGE -->
+    <div class="hero-image">
+      <img src="assets_main/hero.jpg" alt="RVCE Campus"
+        onerror="this.style.display='none'">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+        <span>Hero image goes here<br><small>assets_main/hero.jpg</small></span>
+      </div>
+      <div class="cs-overlay">
+        <div>
+          <div class="cs-title">Our New Website is Coming Soon</div>
+          <div class="cs-sub">We're rebuilding our digital home. Stay tuned for updates.</div>
+        </div>
+        <div>
+          <div class="cd-label">Launching in</div>
+          <div class="countdown">
+            <div class="unit"><div class="unit-value" id="cd-days">00</div><div class="unit-name">Days</div></div>
+            <div class="sep">:</div>
+            <div class="unit"><div class="unit-value" id="cd-hours">00</div><div class="unit-name">Hours</div></div>
+            <div class="sep">:</div>
+            <div class="unit"><div class="unit-value" id="cd-mins">00</div><div class="unit-name">Mins</div></div>
+            <div class="sep">:</div>
+            <div class="unit"><div class="unit-value" id="cd-secs">00</div><div class="unit-name">Secs</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- NOTIFICATIONS BAR -->
+    <div class="notif-bar">
+      <div class="notif-label">
+        <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 002 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 00-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+        Notifications
+      </div>
+      <div class="notif-ticker">
+        <div class="notif-inner">
+          <span>New website launching soon — stay tuned for updates</span>
+          <span>Admissions open for AY 2026–27 — contact the admissions office</span>
+          <span>RVCE ranked #1 among Best Private Engineering Colleges — IIRF 2025</span>
+          <span>Certification programme in Applied AI/ML in Renewable Energy &amp; Sustainability</span>
+          <span>New website launching soon — stay tuned for updates</span>
+          <span>Admissions open for AY 2026–27 — contact the admissions office</span>
+          <span>RVCE ranked #1 among Best Private Engineering Colleges — IIRF 2025</span>
+          <span>Certification programme in Applied AI/ML in Renewable Energy &amp; Sustainability</span>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ACCREDITATION -->
+    <div class="accred-section">
+      <div class="section-heading">
+        <div class="sh-line"></div>
+        <div class="sh-title">Accreditation</div>
+        <div class="sh-line"></div>
+      </div>
+ 
+      <!-- Row 1 -->
+      <div class="accred-row row-4">
+        <div class="accred-cell">
+          <img src="assets_main/ugc.png" alt="UGC" class="accred-logo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="accred-logo-ph">UGC<br>Logo</div>
+          <div class="accred-text"><p><strong>Recognised by the UGC (University Grants Commission)</strong> and holding Autonomous Status, RVCE is committed to maintaining the highest standards in higher education.</p></div>
+        </div>
+        <div class="accred-cell">
+          <img src="assets_main/aicte.png" alt="AICTE" class="accred-logo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="accred-logo-ph">AICTE<br>Logo</div>
+          <div class="accred-text"><p><strong>Approved by AICTE,</strong> ensuring quality in technical education.</p></div>
+        </div>
+        <div class="accred-cell">
+          <img src="assets_main/nba.png" alt="NBA" class="accred-logo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="accred-logo-ph">NBA<br>Logo</div>
+          <div class="accred-text"><p>UG and PG programmes are accredited multiple times by the <strong>National Board of Accreditation (NBA).</strong></p></div>
+        </div>
+        <div class="accred-cell">
+          <img src="assets_main/naac.png" alt="NAAC" class="accred-logo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="accred-logo-ph">NAAC<br>Logo</div>
+          <div class="accred-text"><p>Accredited with an <strong>A+ Grade by NAAC,</strong> reflecting our commitment to excellence.</p></div>
+        </div>
+      </div>
+ 
+      <!-- Row 2 -->
+      <div class="accred-row row-3">
+        <div class="accred-cell">
+          <img src="assets_main/vtu.png" alt="VTU" class="accred-logo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="accred-logo-ph">VTU<br>Logo</div>
+          <div class="accred-text"><p><strong>Affiliated to Visvesvaraya Technological University (VTU),</strong> Belagavi.</p></div>
+        </div>
+        <div class="accred-cell">
+          <img src="assets_main/nirf.png" alt="NIRF" class="accred-logo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="accred-logo-ph">NIRF<br>Logo</div>
+          <div class="accred-text">
+            <p><strong>Ranked in the 101–150 band in the NIRF 2025</strong> Engineering Category.</p>
+            <div class="nirf-links">
+              <a href="#">NIRF DCS Report 2026 (Engineering, Innovation, SDG)</a>
+              <a href="#">NIRF DCS Report 2025</a>
+              <a href="#">NIRF DCS Report 2024</a>
+            </div>
+          </div>
+        </div>
+        <div class="accred-cell">
+          <img src="assets_main/iirf.png" alt="IIRF" class="accred-logo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="accred-logo-ph">IIRF<br>Logo</div>
+          <div class="accred-text"><p><strong>Ranked 1st at the National, State and Zonal levels</strong> among the Best Private Engineering Colleges in the <strong>IIRF 2025</strong> Rankings.</p></div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- QUOTES -->
+    <div class="quotes-section">
+      <div class="section-heading">
+        <div class="sh-line"></div>
+        <div class="sh-title">From Our Community</div>
+        <div class="sh-line"></div>
+      </div>
+      <div class="quotes-grid">
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <div class="quote-photo">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            Photo here · assets_main/quote1.jpg
+          </div>
+          <p class="quote-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam."</p>
+          <div class="quote-author">Dr. Firstname Lastname</div>
+          <div class="quote-role">Principal, RV College of Engineering</div>
+        </div>
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <div class="quote-photo">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            Photo here · assets_main/quote2.jpg
+          </div>
+          <p class="quote-body">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."</p>
+          <div class="quote-author">Prof. Firstname Lastname</div>
+          <div class="quote-role">Head of Department, Computer Science</div>
+        </div>
+        <div class="quote-card">
+          <div class="quote-mark">"</div>
+          <div class="quote-photo">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+            Photo here · assets_main/quote3.jpg
+          </div>
+          <p class="quote-body">"Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation."</p>
+          <div class="quote-author">Student Name</div>
+          <div class="quote-role">Final Year, Electronics &amp; Communication</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div>© 2025 RV College of Engineering, Bengaluru — 560059. All rights reserved.</div>
+      <div>Affiliated to Visvesvaraya Technological University, Belagavi</div>
+    </footer>
+ 
+  </div>
+ 
+  <script>
+    const target = new Date('2026-04-16T23:59:59');
+    const els = {
+      days:  document.getElementById('cd-days'),
+      hours: document.getElementById('cd-hours'),
+      mins:  document.getElementById('cd-mins'),
+      secs:  document.getElementById('cd-secs'),
+    };
+    function pad(n){ return String(Math.max(0,n)).padStart(2,'0'); }
+    let timer;
+    function tick(){
+      const diff = Math.max(0, target - new Date());
+      els.days.textContent  = pad(Math.floor(diff/86400000));
+      els.hours.textContent = pad(Math.floor(diff/3600000)%24);
+      els.mins.textContent  = pad(Math.floor(diff/60000)%60);
+      els.secs.textContent  = pad(Math.floor(diff/1000)%60);
+      if(diff<=0) clearInterval(timer);
+    }
+    tick();
+    timer = setInterval(tick, 1000);
+  </script>
+</body>
+</html>
